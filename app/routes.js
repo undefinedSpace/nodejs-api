@@ -21,7 +21,7 @@ export const routes = [
         handler : serverController.addServer,
         config : {           
             validate : {
-                params : {
+                payload : {
                     ip : joi.string().required(),
                     hostname : joi.string().required(),
                     token : joi.string().required()
