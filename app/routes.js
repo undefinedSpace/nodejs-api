@@ -1,5 +1,5 @@
 import joi from 'joi';
-import {serverController} from './controllers/server.controller';
+import { serverController } from './controllers/server.controller';
 
 export const routes = [
     /**
@@ -33,5 +33,10 @@ export const routes = [
         method : 'PUT',
         path : '/api/servers/{id}',
         handler : serverController.updateServer
+    },
+    {
+        method : 'DELETE',
+        path : '/api/servers/{id}',
+        handler : serverController.deleteServer
     }
 ];

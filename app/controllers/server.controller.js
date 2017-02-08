@@ -1,4 +1,4 @@
-import {db} from '../connection'
+import { db } from '../connection'
 
 export const serverController = {
 
@@ -25,6 +25,19 @@ export const serverController = {
         db.insert(server).into('servers').then(() => {
 
             response({ status: 'ok', message: 'Server successfully added!' }); 
+
+        }).catch((error) => {
+
+            response({ status: 'error', message: 'Server side error!' })
+
+        });
+    },
+
+    deleteServer: (request, response) => {
+  
+        db('servers').where('id', request.params.id).del().then(() => {
+
+            response({ status: 'ok', message: 'Server successfully deleted!' }); 
 
         }).catch((error) => {
 
