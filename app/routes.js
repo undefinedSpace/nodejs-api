@@ -28,5 +28,10 @@ export const routes = [
                 }
             } 
         }
+    },
+    {
+        method : 'PUT',
+        path : '/api/servers/{id}',
+        handler : serverController.updateServer
     }
 ];
