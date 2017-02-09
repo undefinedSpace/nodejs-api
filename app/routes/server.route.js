@@ -32,27 +32,31 @@ export const serverRoutes = [
                     ip : joi.string().required(),
                     hostname : joi.string().required(),
                     token : joi.string().required()
-                },
+                }
+            },
             tags: ['api'], 
             description: 'Post Server data to database', 
-            notes: 'Post server data to database'
-            } 
+            notes: 'Post server data to database' 
         }
     },
     {
         method : 'PUT',
         path : '/api/servers/{id}',
         handler : serverController.updateServer,
-        tags: ['api'], 
-        description: 'Put data to database for update Server', 
-        notes: 'Put data to database for update Server'
+        config: {
+            tags: ['api'], 
+            description: 'Put data to database for update Server', 
+            notes: 'Put data to database for update Server'
+        }
     },
     {
         method : 'DELETE',
         path : '/api/servers/{id}',
         handler : serverController.deleteServer,
-        tags: ['api'], 
-        description: 'Delete Server data from database', 
-        notes: 'Delete Server data from database'
+        config: {
+            tags: ['api'], 
+            description: 'Delete Server data from database', 
+            notes: 'Delete Server data from database'
+        }
     }
 ];

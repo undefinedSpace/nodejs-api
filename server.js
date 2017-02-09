@@ -9,18 +9,14 @@ server.connection({
     port: 8080
 });
 
-console.log(plugins);
-
-server.register(plugins, (error) => {
-    if (error) {
-        console.error('Failed to load a plugin:', err);
-    }
-});
-
 server.route(routes);
 
+server.register(plugins, (error) => {
+    if (error) console.log('Failed to load plugin:', error)
+})
+
 server.start(error => {
-    if(error) console.error('Failed to start server:', error);
+    if (error) console.error('Failed to start server:', error);
         console.log('Server started on:', server.info.uri);
 });
 

@@ -1,8 +1,23 @@
-import swagger from  'hapi-swagger';
+import pack from '../../package'
 
 export const swaggerPlugin = { 
-    register : swagger, 
+    register : require('hapi-swagger'), 
     options: { 
-        apiVersion: "1.0.0" 
+        info: {
+            title: 'undefinedSpace API Documentation',
+            description: 'api docs gg wp',
+            version: pack.version,
+            contact: {
+                name: 'Mikalai Ulasevich',
+                url: 'https://github.com/Laapi'
+            },
+            license: {
+                name: pack.license
+            }
+        },
+        documentationPath: '/',
+        jsonEditor: true, 
+        pathPrefixSize: 2,
+        basePath: '/api/'
     }
-}
+};
