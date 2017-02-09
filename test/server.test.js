@@ -1,6 +1,6 @@
-import server   from '../server';
-import chai     from 'chai';
-import chaihttp from 'chai-http';
+const server   = require('../server');
+const chai     = require('chai');
+const chaihttp = require('chai-http');
 
 const should = chai.should();
 

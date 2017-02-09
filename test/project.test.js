@@ -1,6 +1,6 @@
-import server   from '../server';
-import chai     from 'chai';
-import chaihttp from 'chai-http';
+const server   = require('../server');
+const chai     = require('chai');
+const chaihttp = require('chai-http');
 
 const should = chai.should();
 
@@ -19,6 +19,7 @@ describe('Project API Tests:', () => {
                 });
         });
     });
+    
     describe('/GET : Project by ID', () => {
         it('return: status code 200, json, array, body.data: length = 6(id,id_folder,id_server,path,time_start,time_stop)', (done) => {
             chai.request(server.listener)
@@ -37,6 +38,7 @@ describe('Project API Tests:', () => {
                 });
         });
     });
+
     describe('/POST : Add project', () => {
         it('return: status code 200, json, array, message : Project successfully added!', (done) => {
             chai.request(server.listener)
@@ -56,6 +58,7 @@ describe('Project API Tests:', () => {
                 });
         });
     });
+
     describe('/PUT : Update project', () => {
         it('return: status code 200, json, array, message : Project successfully updated!', (done) => {
             chai.request(server.listener)
@@ -87,6 +90,7 @@ describe('Project API Tests:', () => {
                 });
         });
     });
+
     describe('/DELETE : Delete project', () => {
         it('return: status code 200, json, array, message : Project successfully deleted!', (done) => {
             chai.request(server.listener)

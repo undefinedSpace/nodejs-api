@@ -1,21 +1,21 @@
-import joi from 'joi';
-import { projectController } from '../controllers/project.controller';
+const joi      = require('joi');
+const handlers = require('../handlers');
 
-export const projectRoutes = [
+const projectRoutes = [
     {
         method : 'GET',
         path : '/api/projects',
-        handler : projectController.getAll,
+        handler : handlers.project.getAll,
     },
         {
         method : 'GET',
         path : '/api/projects/{id}',
-        handler : projectController.getByID,
+        handler : handlers.project.getByID,
     },
     {
         method : 'POST',
         path : '/api/projects',
-        handler : projectController.addProject,
+        handler : handlers.project.addProject,
         config : {           
             validate : {
                 payload : {
@@ -31,11 +31,13 @@ export const projectRoutes = [
     {
         method : 'PUT',
         path : '/api/projects/{id}',
-        handler : projectController.updateProject
+        handler : handlers.project.updateProject
     },
     {
         method : 'DELETE',
         path : '/api/projects/{id}',
-        handler : projectController.deleteProject
+        handler : handlers.project.deleteProject
     }
 ];
+
+module.exports = projectRoutes;

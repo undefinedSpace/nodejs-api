@@ -1,4 +1,4 @@
-import knex from 'knex';
+const knex = require('knex');
 
 const env = process.env.NODE_ENV;
 const databases = {
@@ -34,4 +34,6 @@ const databases = {
     }
 };
 
-export const db = knex(databases[env]);
+const db = knex(databases[env]);
+
+module.exports = db;

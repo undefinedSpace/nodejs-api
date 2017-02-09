@@ -1,9 +1,11 @@
-import inert   from 'inert';
-import vision  from 'vision';
-import { swaggerPlugin } from './plugins/swagger.plugin'
+const inert   = require('inert');
+const vision  = require('vision');
+const swagger = require('./plugins/swagger.plugin');
 
-export const plugins = [
+const plugins = [
     inert,
     vision,
-    swaggerPlugin
+    swagger
 ];
+
+module.exports = plugins;

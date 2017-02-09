@@ -1,15 +1,17 @@
-import joi from 'joi';
-import { eventController } from '../controllers/event.controller';
+const joi      = require('joi');
+const handlers = require('../handlers');
 
-export const eventRoutes = [
+const eventRoutes = [
     {
         method : 'GET',
         path : '/api/events',
-        handler : eventController.getAll,
+        handler : handlers.event.getAll,
     },
     {
         method : 'GET',
         path : '/api/events/{id}',
-        handler : eventController.getByID,
+        handler : handlers.event.getByID,
     }
 ];
+
+module.exports = eventRoutes;

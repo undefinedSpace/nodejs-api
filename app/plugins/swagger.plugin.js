@@ -1,6 +1,6 @@
-import pack from '../../package'
+const pack = require('../../package.json');
 
-export const swaggerPlugin = { 
+const swagger = { 
     register : require('hapi-swagger'), 
     options: { 
         info: {
@@ -8,7 +8,7 @@ export const swaggerPlugin = {
             description: 'api docs gg wp',
             version: pack.version,
             contact: {
-                name: 'Mikalai Ulasevich',
+                name: pack.author,
                 url: 'https://github.com/Laapi'
             },
             license: {
@@ -21,3 +21,5 @@ export const swaggerPlugin = {
         basePath: '/api/'
     }
 };
+
+module.exports = swagger;

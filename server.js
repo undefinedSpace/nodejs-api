@@ -1,6 +1,6 @@
-import hapi        from 'hapi';
-import { plugins } from './app/plugins'
-import { routes }  from './app/routes';
+const hapi    = require('hapi')
+const plugins = require('./app/plugins')
+const routes  = require('./app/routes')
 
 const server = new hapi.Server();
 

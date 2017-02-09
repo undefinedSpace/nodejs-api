@@ -1,9 +1,11 @@
-import { serverRoutes }  from './routes/server.route';
-import { projectRoutes } from './routes/project.route';
-import { eventRoutes }   from './routes/event.route';
+const serverRoutes  = require('./routes/server.route');
+const projectRoutes = require('./routes/project.route');
+const eventRoutes   = require('./routes/event.route');
 
-export const routes = [
+const routes = [
     ...serverRoutes,
     ...projectRoutes,
     ...eventRoutes
  ];
+
+ module.exports = routes;

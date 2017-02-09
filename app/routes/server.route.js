@@ -1,11 +1,11 @@
-import joi from 'joi';
-import { serverController } from '../controllers/server.controller';
+const joi      = require('joi');
+const handlers = require('../handlers');
 
-export const serverRoutes = [
+const serverRoutes = [
     {
         method : 'GET',
         path : '/api/servers',
-        handler : serverController.getAll,
+        handler : handlers.server.getAll,
         config : {
             tags: ['api'], 
             description: 'Get All Servers data', 
@@ -15,7 +15,7 @@ export const serverRoutes = [
         {
         method : 'GET',
         path : '/api/servers/{id}',
-        handler : serverController.getByID,
+        handler : handlers.server.getByID,
         config : {
             tags: ['api'], 
             description: 'Get Server data by ID', 
@@ -25,7 +25,7 @@ export const serverRoutes = [
     {
         method : 'POST',
         path : '/api/servers',
-        handler : serverController.addServer,
+        handler : handlers.server.addServer,
         config : {           
             validate : {
                 payload : {
@@ -42,7 +42,7 @@ export const serverRoutes = [
     {
         method : 'PUT',
         path : '/api/servers/{id}',
-        handler : serverController.updateServer,
+        handler : handlers.server.updateServer,
         config: {
             tags: ['api'], 
             description: 'Put data to database for update Server', 
@@ -52,7 +52,7 @@ export const serverRoutes = [
     {
         method : 'DELETE',
         path : '/api/servers/{id}',
-        handler : serverController.deleteServer,
+        handler : handlers.server.deleteServer,
         config: {
             tags: ['api'], 
             description: 'Delete Server data from database', 
@@ -60,3 +60,5 @@ export const serverRoutes = [
         }
     }
 ];
+
+module.exports = serverRoutes;
