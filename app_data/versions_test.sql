@@ -63,9 +63,11 @@ CREATE TABLE `projects` (
   `id_server`  INT(11)   NOT NULL,
   `path`       TEXT      NOT NULL, /*полный путь к отслеживаемому проекту (без названия папки)*/
   `time_start` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP, /*время начала наблюдения за папкой*/
-  `time_stop`  TIMESTAMP NOT NULL DEFAULT 0, /*время окончания наблюдения (когда наблюдение полностью отменяется)*/
+  `time_stop`  TIMESTAMP, /*время окончания наблюдения (когда наблюдение полностью отменяется)*/
   PRIMARY KEY (`id`)
 );
+
+INSERT INTO projects (`id`, `id_folder`, `id_server`, `path`, `time_start`, `time_stop`) VALUES ('0', '0', '0', 'd05661c81df53f54e9973d8ccdbb0666cd91925d89b24abfad58a1073d3f0a2e', '', '');
 
 DROP TABLE IF EXISTS `servers`;
 CREATE TABLE `servers` (
@@ -75,6 +77,8 @@ CREATE TABLE `servers` (
   `token`    TEXT    NOT NULL,
   PRIMARY KEY (`id`)
 );
+
+INSERT INTO servers (`id`, `ip`, `hostname`, `token`) VALUES ('0', '192.168.1.1', 'https://scotch.io/', 'd05661c81df53f54e9973d8ccdbb0666cd91925d89b24abfad58a1073d3f0a2e');
 
 DROP TABLE IF EXISTS `accord_folders`;
 CREATE TABLE `accord_folders` (

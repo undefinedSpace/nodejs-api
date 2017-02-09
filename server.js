@@ -12,5 +12,6 @@ server.route(routes);
 
 server.start(error => {
     if(error) throw error
-    console.log(`Server started on ${ server.info.uri }`);
 });
+
+module.exports = server;
