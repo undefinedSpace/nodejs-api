@@ -4,14 +4,28 @@ export const serverController = {
 
     getAll: (request, response) => {
 
-        response(db.select().from('servers').timeout(1000, { cancel: true }));
+        db.select().from('servers').timeout(1000, { cancel: true }).then((data) => {
 
+            response({ status: 'ok', message: 'Servers successfully fetched!', data: data }); 
+
+        }).catch((error) => {
+
+            response({ status: 'error', message: 'Server side error!' })
+
+        });
     },
 
     getByID: (request, response) => {
 
-            let data = db.select().from('servers').where('id', request.params.id);
-            response(data); 
+            db.select().from('servers').where('id', request.params.id).then((data) => {
+
+                response({ status: 'ok', message: 'Server successfully fetched!', data: data });
+
+            }).catch((error) => {
+
+                response({ status: 'error', message: 'Server side error!' })
+
+            });
     },
 
     addServer: (request, response) => {
