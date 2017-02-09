@@ -1,5 +1,5 @@
-import hapi       from 'Hapi';
-import {routes}   from './app/routes';
+import hapi       from 'hapi';
+import { routes } from './app/routes';
 
 const server = new hapi.Server();
 
@@ -7,6 +7,8 @@ server.connection({
     host: 'localhost',
     port: 8080
 });
+
+console.log(routes);
 
 server.route(routes);
 
