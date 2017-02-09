@@ -2,9 +2,6 @@ import joi from 'joi';
 import { serverController } from './controllers/server.controller';
 
 export const routes = [
-    /**
-     * Server routes
-     */
     {
         method : 'GET',
         path : '/api/servers',
