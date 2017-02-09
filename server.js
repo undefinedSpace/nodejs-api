@@ -8,8 +8,6 @@ server.connection({
     port: 8080
 });
 
-console.log(routes);
-
 server.route(routes);
 
 server.start(error => {
