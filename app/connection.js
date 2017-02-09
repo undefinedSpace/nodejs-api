@@ -34,6 +34,4 @@ const databases = {
     }
 };
 
-console.log(knex(databases[env]))
-
 export const db = knex(databases[env]);
