@@ -19,7 +19,7 @@ const getByID = (request, response) => {
 
     db.select().from('events').where('id', request.params.id).then((data) => {
 
-        response(data);
+        response({data});
 
     }).catch((error) => {
 
