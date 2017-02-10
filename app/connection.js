@@ -6,7 +6,7 @@ const databases = {
     production: {
         client: 'mysql',
         connection: {
-            host : 'localhost',
+            host : '127.0.0.1',
             user : 'root',
             password : 'rootx',
             database : 'versions_db_prod'
