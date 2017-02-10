@@ -18,7 +18,7 @@ const databases = {
         connection: {
             host : '127.0.0.1',
             user : 'root',
-            password : '66666666',
+            password : 'rootx',
             database : 'versions_db_dev'
         }
     },
@@ -28,7 +28,7 @@ const databases = {
         connection: {
             host : '127.0.0.1',
             user : 'root',
-            password : '66666666',
+            password : 'rootx',
             database : 'versions_db_test'
         }
     }
