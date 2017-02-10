@@ -5,7 +5,7 @@ const routes  = require('./app/routes')
 const server = new hapi.Server();
 
 server.connection({
-    host: 'localhost',
+    host: '127.0.0.1',
     port: 8080
 });
 
