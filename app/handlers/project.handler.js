@@ -18,7 +18,7 @@ const getByID = (request, response) => {
 
         db.select().from('projects').where('id', request.params.id).then((data) => {
 
-            response(data);
+            response({data});
 
         }).catch((error) => {
 
