@@ -1,10 +1,11 @@
 const db = require('../connection');
+const joi = require('joi');
 
 const getAll = (request, response) => {
 
     db.select().from('projects').timeout(1000, { cancel: true }).then((data) => {
 
-        response({ status: 'ok', message: 'Projects successfully fetched!', data: data }); 
+        response(data); 
 
     }).catch((error) => {
 
@@ -17,7 +18,7 @@ const getByID = (request, response) => {
 
         db.select().from('projects').where('id', request.params.id).then((data) => {
 
-            response({ status: 'ok', message: 'Projects successfully fetched!', data: data });
+            response(data);
 
         }).catch((error) => {
 
@@ -73,10 +74,59 @@ const updateProject = (request, response) => {
     });
 }
 
+const schema = {
+    project: joi.object().keys({
+        id: joi
+            .number()
+            .required()
+            .integer()
+            .min(0)
+            .description('id of the project')
+            .example(1),
+        id_folder: joi
+            .number()
+            .required()
+            .integer()
+            .min(0)
+            .description('id of the folder')
+            .example(1),
+        id_server: joi
+            .number()
+            .required()
+            .integer()
+            .min(0)
+            .description('id of the server')
+            .example(1),
+        path: joi
+            .string()
+            .required()
+            .description('path for project')
+            .example('/home/usr/dev/versions'),
+        time_start: joi
+            .date()
+            .required()
+            .description('unix timestamp of project start time')
+            .example('2017-02-10 01:08:03'),
+        time_stop: joi 
+            .date()
+            .required()
+            .description('unix timestamp of project stop time')
+            .example('2017-02-10 02:01:23')
+    }).label('project'),
+
+    get projects() {
+        return joi
+            .array()
+            .items(this.project)
+            .label('list_of_projects')
+    }
+}
+
 module.exports = {
     getAll,
     getByID,
     addProject,
     updateProject,
-    deleteProject
+    deleteProject,
+    schema
 }

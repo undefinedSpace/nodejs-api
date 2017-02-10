@@ -5,7 +5,7 @@ const getAll = (request, response) => {
 
     db.select().from('servers').timeout(1000, { cancel: true }).then((data) => {
 
-        response({ status: 'ok', message: 'Servers successfully fetched!', data: data }); 
+        response(data); 
 
     }).catch((error) => {
 
@@ -18,7 +18,7 @@ const getByID = (request, response) => {
 
         db.select().from('servers').where('id', request.params.id).then((data) => {
 
-            response({ status: 'ok', message: 'Server successfully fetched!', data: data });
+            response(data);
 
         }).catch((error) => {
 
@@ -96,7 +96,14 @@ const schema = {
             .required()
             .description('token for encryption')
             .example('3c469e9d6c5875d37a43f353d4f88e61fcf812c66eee3457465a40b0da4153e0'),
-    })
+    }).label('server'),
+
+    get servers() {
+        return joi
+            .array()
+            .items(this.server)
+            .label('list_of_servers')
+    }
 }
 
 module.exports = {
