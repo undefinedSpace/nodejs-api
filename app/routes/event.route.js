@@ -21,9 +21,6 @@ const eventRoutes = [
         config  : {
             tags        : ['api'], 
             description : 'Get event from database',
-            response    : {
-                schema : handlers.event.schema.event
-            }
         }
     }
 ];
