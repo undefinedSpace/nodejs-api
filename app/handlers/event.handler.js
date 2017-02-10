@@ -9,6 +9,7 @@ const getAll = (request, response) => {
 
     }).catch((error) => {
 
+        console.error(error)
         response({ status: 'error', message: 'Server side error!', error: error })
 
     });
