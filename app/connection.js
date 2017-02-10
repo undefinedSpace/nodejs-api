@@ -16,9 +16,9 @@ const databases = {
     development: {
         client: 'mysql',
         connection: {
-            host : 'localhost',
-            user : 'root',
-            password : 'rootx',
+            host : 'http://194.87.92.115/',
+            user : 'laapi',
+            password : '666666',
             database : 'versions_db_dev'
         }
     },
