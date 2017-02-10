@@ -9,9 +9,6 @@ const eventRoutes = [
         config: {
             tags        : ['api'], 
             description : 'Get all events from database', 
-            response: { 
-                schema : handlers.event.schema.events
-            }
         }
     },
     {
@@ -21,6 +18,9 @@ const eventRoutes = [
         config  : {
             tags        : ['api'], 
             description : 'Get event from database',
+            response    : {
+                schema : handlers.event.schema.event
+            }
         }
     }
 ];
