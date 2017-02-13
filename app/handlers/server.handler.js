@@ -1,76 +1,33 @@
 const db  = require('../connection');
 const joi = require('joi');
 
-const getAll = (request, response) => {
+const getAll = (request, reply) => {
 
-    db.select().from('servers').timeout(1000, { cancel: true }).then((data) => {
+    db.many('SELECT * FROM servers').then( data => {
 
-        response(data); 
+        reply(data)
 
-    }).catch((error) => {
+    }).catch( error => {
 
-        response({ status: 'error', message: 'Server side error!' })
+        reply(error).code(500)
 
-    });
+    })
+
 };
 
-const getByID = (request, response) => {
+const getByID = (request, reply) => {
 
-        db.select().from('servers').where('id', request.params.id).then((data) => {
+    db.one('SELECT * FROM servers WHERE id = $1', request.params.id).then( data => {
 
-            response({data});
+        reply(data)
 
-        }).catch((error) => {
+    }).catch( error => {
 
-            response({ status: 'error', message: 'Server side error!' })
+        reply(error).code(500)
 
-        });
+    })
+
 };
-
-const addServer = (request, response) => {
-
-    let server = [{
-        ip : request.payload.ip,
-        hostname : request.payload.hostname,
-        token : request.payload.token
-    }];
-
-    db.insert(server).into('servers').then(() => {
-
-        response({ status: 'ok', message: 'Server successfully added!' }); 
-
-    }).catch((error) => {
-
-        response({ status: 'error', message: 'Server side error!' })
-
-    });
-};
-
-const deleteServer = (request, response) => {
-  
-    db('servers').where('id', request.params.id).del().then(() => {
-
-        response({ status: 'ok', message: 'Server successfully deleted!' }); 
-
-    }).catch((error) => {
-
-        response({ status: 'error', message: 'Server side error!' })
-
-    });
-};
-
-const updateServer = (request, response) => {
-
-    db.update(request.payload).into('servers').where('id', request.params.id).then(() => {
-
-        response({ status: 'ok', message: 'Server successfully updated!' }); 
-
-    }).catch((error) => {
-
-        response({ status: 'error', message: 'Server side error!' })
-
-    });
-}
 
 const schema = {
     server: joi.object().keys({
@@ -109,8 +66,5 @@ const schema = {
 module.exports = {
     getAll,
     getByID,
-    addServer,
-    updateServer,
-    deleteServer,
     schema
 }

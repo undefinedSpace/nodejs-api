@@ -1,39 +1,34 @@
-const knex = require('knex');
+var pgp = require('pg-promise')();
 
 const env = process.env.NODE_ENV;
+
 const databases = {
 
     production: {
-        client: 'mysql',
-        connection: {
-            host : '127.0.0.1',
-            user : 'root',
-            password : 'rootx',
-            database : 'versions_db_prod'
-        }
+        host: 'localhost',
+        port: 5432,
+        database: 'versions_db_prod',
+        user: 'nikolajulasevic',
+        password: '666666'
     },
 
     development: {
-        client: 'mysql',
-        connection: {
-            host : 'localhost',
-            user : 'root',
-            password : 'rootx',
-            database : 'versions_db_dev'
-        }
+        host: 'localhost',
+        port: 5432,
+        database: 'versions_db_dev',
+        user: 'nikolajulasevic',
+        password: '666666'
     },
 
     test: {
-        client: 'mysql',
-        connection: {
-            host : '127.0.0.1',
-            user : 'root',
-            password : 'rootx',
-            database : 'versions_db_test'
-        }
+        host: 'localhost',
+        port: 5432,
+        database: 'versions_db_test',
+        user: 'nikolajulasevic',
+        password: '666666'
     }
 };
 
-const db = knex(databases[env]);
+const db = pgp(databases[env]);
 
 module.exports = db;
