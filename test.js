@@ -197,4 +197,23 @@ var json = `
 
 var a = JSON.parse(json)
 
-console.log(a);
+const eachContent = (data, parentId, serverId = 1) => {
+        if (typeof data !== 'object' || !data instanceof Array) return;
+
+        data.forEach(item => {
+            if(item.type == 'file') {
+
+                console.log('FILE PARENT ID : ', parentId, item.name)
+                eachContent(item.content, parentId + 1);
+                
+                 } else if (item.type == 'folder') {
+
+                    console.log('FOLDER PARENT ID : ', parentId, item.name)
+                    eachContent(item.content, parentId + 1);
+
+                }
+        });
+}
+
+eachContent(a.content, 1);
+

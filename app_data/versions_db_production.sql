@@ -9,7 +9,7 @@ CREATE TABLE servers (
 DROP TABLE IF EXISTS projects CASCADE;
 CREATE TABLE projects (
     id         SERIAL PRIMARY KEY,
-    server_id  SERIAL REFERENCES servers(id),
+    server_id  INTEGER,
     path       VARCHAR(200) NOT NULL,
     time_start TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     time_stop  TIMESTAMP
@@ -18,19 +18,19 @@ CREATE TABLE projects (
 DROP TABLE IF EXISTS folders CASCADE;
 CREATE TABLE folders (
     id         SERIAL PRIMARY KEY,
-    server_id  INTEGER REFERENCES servers(id),
+    server_id  INTEGER,
     parent_id  INTEGER NULL,
-    CONSTRAINT (parent_id) REFERENCES folders(id)
     name       VARCHAR(200) NOT NULL,
     inode      BIGINT,
     deleted    BOOLEAN NOT NULL DEFAULT FALSE
+    FOREIGN KEY (server_id, parent_id) REFERENCES rentable_movies(movie_id, store_id, copy_number)
 );
 
 DROP TABLE IF EXISTS files CASCADE;
 CREATE TABLE files (
     id         SERIAL PRIMARY KEY,
-    server_id  SERIAL REFERENCES servers(id),
-    folder_id  SERIAL REFERENCES folders(id),
+    server_id  INTEGER,
+    folder_id  INTEGER,
     name       VARCHAR(200) NOT NULL,
     hash       BIGINT,
     inode      BIGINT,
